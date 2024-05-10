@@ -1,0 +1,46 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block h %}
+<h3>АФИША</h3>
+{% endblock %}
+{% block main %}
+
+<div class="albums_all">
+    <div class="albums_points">
+        <p>Город</p>
+        <select id="yearDropdown">
+            <option value="select">Выбрать город</option>
+            {% for c in city %}
+                <option value="{{ c }}" class="year-class">{{ c }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <ul class="posters">
+        {% for id, c, address, date in poster %}
+            <li class="poster" data-year="{{ c }}">
+                <img src="{% static 'poster/calendar.svg' %}" alt="calendar">
+                <p id="date">{{ date }}</p>
+                <img src="{% static 'poster/location.svg' %}" alt="location">
+                <p id="city">г. {{ c }} - {{ address }}</p>
+                <button><a href="{{id}}">Купить билет</a></button>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+<script>
+    document.getElementById('yearDropdown').addEventListener('change', function () {
+        var selectedYear = this.value;
+        var albumElements = document.querySelectorAll('.poster');
+
+        albumElements.forEach(function (albumElement) {
+            var albumYear = albumElement.getAttribute('data-year');
+
+            if (selectedYear === 'select' || albumYear === selectedYear) {
+                albumElement.style.display = 'flex';
+            } else {
+                albumElement.style.display = 'none';
+            }
+        });
+    });
+</script>
+{% endblock %}

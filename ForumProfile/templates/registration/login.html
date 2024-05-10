@@ -1,0 +1,44 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block h %}
+<h1>ПРОФИЛЬ</h1>
+{% endblock %}
+{% block main %}
+<form method="post">
+    {% csrf_token %}
+    <div class="login">
+        <h5>ВХОД В АККАУНТ</h5>
+        <ul class="auth-input">
+            <li>
+                {% if errors.username or errors.all %}
+                <span class="help login-help">!</span>
+                <span class="help-text login-help-text">
+                    {{errors.username}}
+                    {{errors.all}}
+                </span>
+                {% endif %}
+                <p>Логин</p>
+                <input type="text" name="username">
+            </li>
+            <li>
+                {% if errors.password or errors.all %}
+                <span class="help login-help">!</span>
+                <span class="help-text login-help-text">
+                    {{errors.password}}
+                    {{errors.all}}
+                </span>
+                {% endif %}
+                <p>Пароль</p>
+                <input type="password" name="password">
+            </li>
+        </ul>
+        <ul class="auth-buttons">
+            <div class="auth-button">
+                <button><a href="{% url 'forgot' %}">Забыли пароль?</a></button>
+                <button><a href="{% url 'reg' %}">Регистрация</a></button>
+                <button>Вход</button>
+            </div> 
+        </ul>
+    </div>
+</form>
+{% endblock %}

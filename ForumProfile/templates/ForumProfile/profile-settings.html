@@ -1,0 +1,93 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block h %}
+<h1>ПРОФИЛЬ</h1>
+{% endblock %}
+{% block main %}
+
+<div class="profile">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="photo-pass">
+            <div class="profile-ava">
+                <p>{{ user.username }}</p>
+                <div id="image-container">
+                    <img id="avatar-img" src="{% static user_profile.avatar %}" alt="" name="avatar">
+                    <label for="file-upload">+</label>
+                    <input id="file-upload" type="file" name="file_upload"/>
+                </div>
+                <script>
+                    document.getElementById('file-upload').addEventListener('change', function() {
+                    var file = this.files[0];
+                    if (file) {
+                        var reader = new FileReader();
+                        reader.onload = function(e) {
+                            document.getElementById('avatar-img').src = e.target.result;
+                        }
+                        reader.readAsDataURL(file);
+                    }
+                });
+                </script>
+            </div>
+            <div class="change-password">
+                <p>ИЗМЕНИТЬ ПАРОЛЬ</p>
+                    <ul>
+                        <li>
+                            {% if errors.old_password %}
+                            <span class="help">!</span>
+                            <span class="help-text">
+                                {{errors.old_password}}
+                            </span>
+                            {% endif %}
+                            <p>Старый пароль</p>
+                            <input type="password" name="old_password">
+                            
+                        </li>
+                        <li>
+                            {% if errors.new_password1 %}
+                            <span class="help">!</span>
+                            <span class="help-text">
+                                {{errors.new_password1}}
+                            </span>
+                            {% endif %}
+                            <p>Новый пароль</p>
+                            <input type="password" name="new_password1">
+                        </li>
+                        <li>
+                            {% if errors.new_password2 %}
+                            <span class="help">!</span>
+                            <span class="help-text">
+                                {{errors.new_password2}}
+                            </span>
+                            {% endif %}
+                            <p>Повтор пароля</p>
+                            <input type="password" name="new_password2">
+                        </li>
+                        <li>
+                            <div>
+                                <button name="save_option" value="avatar">Сохранить фото</button>
+                                <button name="save_option" value="password">Сохранить пароль</button>
+                            </div>
+                        </li>
+                    </ul>
+                
+            </div>
+            <div class="profile-settings">
+                <a href="{% url 'profile' %}"><img src="{% static 'ForumProfile/settings.svg' %}" alt="settings"></a>
+            </div>
+        </div>
+    </form> 
+    <div>
+        <ul class="profile-info">
+            <li><p>Покупки: {{ user_profile.purchase_count }}</p></li>
+            <li><p>Сообщения: {{ user_profile.message_count }}</p></li>
+            <li><p>Дата регистрации: {{ user_profile.registration_date }}</p></li>
+            <form method="post" action="{% url 'logout' %}?next=/profile/">
+                {% csrf_token %}
+                <button >Выйти</button>
+            </form>
+        </ul>
+    </div>
+</div>
+
+{% endblock %}

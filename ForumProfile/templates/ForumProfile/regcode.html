@@ -1,0 +1,23 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block h %}
+<h1>ПРОФИЛЬ</h1>
+{% endblock %}
+{% block main %}
+<div class="registration">
+    <h5>РЕГИСТРАЦИЯ</h5>
+    <ul class="auth-input">
+        <li>
+            <p>Код</p>
+            <input type="text">
+        </li>
+        <p>Мы отправили на ваш телефон/email код подтверждения, введите его в окно выше.</p>
+    </ul>
+    <ul class="auth-buttons">
+        <div class="auth-button">
+            <button><a href="{% url 'reg' %}">Назад</a></button>
+            <button><a href="#">Продолжить</a></button>
+        </div> 
+    </ul>
+</div>
+{% endblock %}

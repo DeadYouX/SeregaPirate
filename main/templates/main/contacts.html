@@ -1,0 +1,29 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block h %}
+<h1>КОНТАКТЫ</h1>
+{% endblock %}
+{% block main %}
+    <div class="content">
+        <div class="contact">
+            
+            <ul class="contacts">
+                <li class="cont">
+                    <a href="https://vk.com/pirat_serega/"><img src="{% static '/main/img/vk.svg' %}" alt="ContactVK"></a>
+                    <a href="https://vk.com/pirat_serega/"><p>@pirat_serega</p></a>
+                </li>
+                <li class="cont">
+                    <a href="https://www.instagram.com/pirat_serega/"><img src="{% static '/main/img/instagram.svg' %}" alt="ContactINST"></a>
+                    <a href="https://www.instagram.com/pirat_serega/"><p>@pirat_serega</p></a>
+                </li>
+                <li class="cont">
+                    <a href="https://t.me/serega_pirat2/"><img src="{% static '/main/img/tg.svg' %}" alt="ContactTG"></a>
+                    <a href="https://t.me/serega_pirat2/"><p>@serega_pirat2</p></a>
+                </li>
+            </ul>
+        </div>
+        <div>
+            <img src="{% static '/main/img/bike.png' %}" alt="" class="bike">
+        </div>
+    </div>
+{% endblock %}

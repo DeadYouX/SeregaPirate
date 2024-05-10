@@ -1,0 +1,46 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block main %}
+<h4>КОНЦЕРТ</h4>
+<ul class="">
+    {% for id, c, address, date in poster %}
+        <li class="poster_byid" data-year="{{ c }}">
+            <div>
+                <img src="{% static 'poster/calendar.svg' %}" alt="calendar">
+                <p id="date">{{ date }}</p>
+            </div>
+            <div>
+                <img src="{% static 'poster/location.svg' %}" alt="location">
+                <p id="city">г. {{ c }} - {{ address }}</p>
+            </div>
+        </li>
+    {% endfor %}
+</ul>
+<div class="oplata">
+    <p>СПОСОБ ОПЛАТЫ</p>
+    <select id="oplataDropdown">
+        <option value="card">Банковская карта</option>
+        <option value="card">СБП</option>
+    </select>
+</div>
+<div class="oplata_card">
+    <ul>
+        <li>
+            <p>Номер карты</p>
+            <input type="text">
+        </li>
+        <li>
+            <p>Срок действия</p>
+            <input type="text">
+        </li>
+        <li>
+            <p>Код безопасности (CVV2/CVC2)</p>
+            <input type="text">
+        </li>
+        <li>
+            <button><a href="/poster/">НАЗАД</a></button>
+            <button><a href="/poster/{{id}}/code/">ОПЛАТИТЬ</a></button>
+        </li>
+    </ul>
+</div>
+{% endblock %}

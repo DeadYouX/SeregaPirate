@@ -1,0 +1,24 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block main %}
+<div>
+    <h1>НОВОСТИ</h1>
+    <div class="news_by_id">
+        {% for id, title, desc, text, photo, date in news %}
+            <a href="{{ id }}">{{ title }}</a>
+            <hr>
+            <p>{{text}}</p>
+            {% if photo != '/None' %}
+                <img src="{% static photo %}" alt="Photo {{title}}">
+            {% endif %}
+            <p class="date">{{date}}</p>
+            <hr id="bot">
+        {% endfor %}
+    </div>
+    <div class="buttons">
+        <a href="/news/{{before_id}}"><-НАЗАД</a>
+        <a href="/news/">ВЕРНУТЬСЯ</a>
+        <a href="/news/{{next_id}}">ВПЕРЁД-></a>
+    </div>
+</div>
+{% endblock %}

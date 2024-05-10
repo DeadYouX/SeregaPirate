@@ -1,0 +1,33 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block h %}
+<h3>МЕРЧ</h3>
+{% endblock %}
+{% block main %}
+<div class="merch">
+    <div class="merch-points">
+    {% if item == 'product' %}
+        <a class="product-now" href="{% url 'products' %}">Товары</a>
+        <a href="{% url 'cart' %}">Корзина: {{ cart.total_cost }}₽</a>
+    {% else %}
+        <a href="{% url 'products' %}">Товары</a>
+        <a class="cart-now" href="{% url 'cart' %}">Корзина: {{ cart.total_cost }}₽</a>
+    {% endif %}
+    </div>
+    <div class="products">
+        {% for id, name, color, photo, price in products %}
+        <div class="product">
+            <img src="{% static photo %}" alt="">
+            <div>
+                <p>{{ name }}</p>
+                <p>Цвет:  {{ color }}</p>
+                <p>Цена: {{ price }}₽</p>
+            </div>
+            <button><a href="{{id}}">Добавить в корзину</a></button>
+        </div>
+        {% endfor %}
+    </div>
+    
+    
+</div>
+{% endblock %}

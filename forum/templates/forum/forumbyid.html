@@ -1,0 +1,47 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block h %}
+<h1>ФОРУМ</h1>
+{% endblock %}
+{% block main %}
+<div class="forum">
+    <div class="forum-points">
+        {% for id, name in chats %}
+        <a href="/forum/{{ id }}">{{ name }}</a>
+        {% endfor %}
+    </div>
+    <div class="forum-chat">
+        <h8>{{ page_name }}</h8>
+        <div class="forum-messages">
+            {% for id, chat, user, content, date, time in messages %}
+                {% if user == user_now %}
+                    <div class="message-right">
+                {% else %}
+                    <div class="message-left">
+                {% endif %}
+                <div class="message">
+                    <h6>{{ user }}</h6>
+                    <p>{{ content }}</p>
+                    <h7>{{ date }}  {{ time }}</h7>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="forum-send">
+            {% if auth %}
+                <form action="." method="post">
+                    <button><a href="/forum/">Назад</a></button>
+                    {% csrf_token %}
+                    <input type="text" name="content">
+                    <button><img src="{% static 'forum/send.svg' %}" alt="send"></button>
+                </form>
+            {% else%}
+                <div class="not-auth">
+                    <p>Чтобы написать сообщение нужно</p>
+                    <a href="{% url 'profile' %}">авторизироваться</a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

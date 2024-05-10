@@ -1,0 +1,161 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'main/css/style.css' %}">
+    <link rel="shortcut icon" href="{% static 'main/am.ico' %}" type="image/x-icon">
+    <link rel="icon" href="{% static 'main/am.ico' %}" type="image/x-icon">
+    <title>{% if title %}{{ title }} {% else %} Вход{% endif %}</title>
+</head>
+
+<body>
+    <header>
+        <div class="">
+            <ul class="header_items">
+                {% if now == 'poster' %}
+                    <li class="header_item header_item_now">
+                        <a href="{% url 'poster' %}"><p>АФИША</p></a>
+                    </li>
+                {% else %}
+                    <li class="header_item">
+                        <a href="{% url 'poster' %}"><p>АФИША</p></a>
+                    </li>
+                {% endif %}
+            
+                {% if now == 'news' %}
+                    <li class="header_item header_item_now">
+                        <a href="{% url 'news' %}"><p>НОВОСТИ</p></a>
+                    </li>
+                {% else %}
+                    <li class="header_item">
+                        <a href="{% url 'news' %}"><p>НОВОСТИ</p></a>
+                    </li>
+                {% endif %}
+            
+                {% if now == 'merch' %}
+                    <li class="header_item header_item_now">
+                        <a href="{% url 'merch' %}"><p>МЕРЧ</p></a>
+                    </li>
+                {% else %}
+                    <li class="header_item">
+                        <a href="{% url 'merch' %}"><p>МЕРЧ</p></a>
+                    </li>
+                {% endif %}
+            
+                {% if now == 'albums' %}
+                    <li class="header_item header_item_now">
+                        <a href="{% url 'albums' %}"><p>АЛЬБОМЫ</p></a>
+                    </li>
+                {% else %}
+                    <li class="header_item">
+                        <a href="{% url 'albums' %}"><p>АЛЬБОМЫ</p></a>
+                    </li>
+                {% endif %}
+            
+                <li class="pirat">
+                    <a href="{% url 'home' %}"><p>СЕРЁГА<br>ПИРАТ</p></a>
+                </li>
+            
+                {% if now == 'photos' %}
+                    <li class="header_item header_item_now">
+                        <a href="{% url 'photos' %}"><p>ФОТО</p></a>
+                    </li>
+                {% else %}
+                    <li class="header_item">
+                        <a href="{% url 'photos' %}"><p>ФОТО</p></a>
+                    </li>
+                {% endif %}
+            
+                {% if now == 'bio' %}
+                    <li class="header_item header_item_now">
+                        <a href="{% url 'bio' %}"><p>БИОГРАФИЯ</p></a>
+                    </li>
+                {% else %}
+                    <li class="header_item">
+                        <a href="{% url 'bio' %}"><p>БИОГРАФИЯ</p></a>
+                    </li>
+                {% endif %}
+            
+                {% if now == 'forum' %}
+                    <li class="header_item header_item_now">
+                        <a href="{% url 'forum' %}"><p>ФОРУМ</p></a>
+                    </li>
+                {% else %}
+                    <li class="header_item">
+                        <a href="{% url 'forum' %}"><p>ФОРУМ</p></a>
+                    </li>
+                {% endif %}
+            
+                {% if now == 'contacts' %}
+                    <li class="header_item header_item_now">
+                        <a href="{% url 'contacts' %}"><p>КОНТАКТЫ</p></a>
+                    </li>
+                {% else %}
+                    <li class="header_item">
+                        <a href="{% url 'contacts' %}"><p>КОНТАКТЫ</p></a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </header>
+    <main>
+        {% if showprofile %}
+            {% if not user.is_authenticated %}
+                <div class="hreg"><a href="{% url 'profile' %}"><img src="{% static '/ForumProfile/profile_avatar.svg' %}" alt=""></a><a href="{% url 'profile' %}">Вход</a><p>/</p><a href="{% url 'reg' %}">Регистрация</a></div>
+            {% else %}
+                <div class="hreg"><a href="{% url 'profile' %}"><img src="{% static '/ForumProfile/profile_avatar.svg' %}" alt=""></a><a href="{% url 'profile' %}">{{ user.username }}</a></div>
+            {% endif %}
+        {% endif %}
+        {% block h %}
+        {% endblock %}
+        {% block main %}{% endblock %}
+    </main>
+    <footer>
+        <div>
+            <ul class="footer_items">
+                <li class="footer_item footer_made">
+                    <p>Made by <br>
+                    <a href="https://t.me/anagor1102" class="designer">anagor</a>
+                    <a href="https://t.me/deadyoux" class="realizator">DeadYouX</a>
+                </p>
+                </li>
+                <li class="footer_item footer_politic">
+                    <a href="{% url 'policy' %}">Политика конфиденциальности</a>
+                </li>
+                <li class="footer_item footer_music">
+                    <a href="https://soundcloud.com/illya-poludnenko/sets/serega-pirat"><div class="footer_logo soundcloud"></div></a>
+                    <a href="https://open.spotify.com/artist/5IS4dQ9lDW01IY1buR7bW7"><div class="footer_logo spotify"></div></a>
+                    <a href="https://music.yandex.ru/artist/10880992"><div class="footer_logo YAmusic"></div></a>
+                </li>
+                <li class="footer_item footer_politic">
+                    <a href="{% url 'conditions' %}">Условия и положения</a>
+                </li>
+                <li class="footer_item footer_made">
+                    <a href="https://www.instagram.com/pirat_serega/"><div class="footer_logo inst"></div></a>
+                    <a href="https://vk.com/serega_pirat"><div class="footer_logo vk"></div></a>
+                </li>
+            </ul>
+        </div>
+    </footer>
+</body>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Сохраняем позицию скролла при отправке формы
+      document.getElementById('myForm').addEventListener('submit', function() {
+        localStorage.setItem('scrollPosition', window.scrollY);
+      });
+    
+      // Восстанавливаем позицию скролла после обновления страницы
+      var scrollPosition = localStorage.getItem('scrollPosition');
+      if (scrollPosition !== null) {
+        window.scrollTo(0, scrollPosition);
+        localStorage.removeItem('scrollPosition'); // Очищаем после использования
+      }
+    });
+</script>

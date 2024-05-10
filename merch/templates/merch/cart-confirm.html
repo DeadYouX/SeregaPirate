@@ -1,0 +1,16 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block main %}
+<h4>СПАСИБО ЗА ПОКУПКУ!</h4>
+<div class="thanks">
+    <div>
+        <p>Заказ оплачен онлайн и скоро будет доставлен.</p>
+        {% for string in adress %}
+        <p>{{ string }}</p>
+        {% endfor %}
+    </div>
+</div>
+<div class="button_next">
+    <button><a href="/merch/products/">Продолжить</a></button>
+</div>
+{% endblock %}

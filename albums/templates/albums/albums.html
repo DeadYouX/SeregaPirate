@@ -1,0 +1,43 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block h %}
+<h3>АЛЬБОМЫ</h3>
+{% endblock %}
+{% block main %}
+
+<div class="albums_all">
+    <div class="albums_points">
+        <p>Год выпуска</p>
+        <select id="yearDropdown">
+            <option value="select">Выбрать год</option>
+            {% for date in dates %}
+                <option value="{{ date }}" class="year-class">{{ date }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <ul class="albums">
+        {% for id, title, photo, date, link in albums %}
+            <li class="album" data-year="{{ date }}">
+                <a href="{{ id }}"><img src="{% static photo %}" alt="{{ title }}"></a>
+                <a href="{{ id }}"><p>{{ title }}<br>{{ date }}</p></a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+<script>
+    document.getElementById('yearDropdown').addEventListener('change', function () {
+        var selectedYear = this.value;
+        var albumElements = document.querySelectorAll('.album');
+
+        albumElements.forEach(function (albumElement) {
+            var albumYear = albumElement.getAttribute('data-year');
+
+            if (selectedYear === 'select' || albumYear === selectedYear) {
+                albumElement.style.display = 'block';
+            } else {
+                albumElement.style.display = 'none';
+            }
+        });
+    });
+</script>
+{% endblock %}

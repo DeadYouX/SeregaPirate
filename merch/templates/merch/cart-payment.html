@@ -1,0 +1,62 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block main %}
+<h4>ЗАКАЗ</h4>
+<div class="cart-payment">
+    <div class="cart-cards">
+        <p>СПОСОБ ОПЛАТЫ</p>
+        <select id="oplataDropdown">
+            <option value="card">Банковская карта</option>
+            <option value="card">СБП</option>
+        </select>
+    </div>
+    <div class="cart-oplata-card">
+        <ul>
+            <li>
+                <p>Номер карты</p>
+                <input type="text">
+            </li>
+            <li>
+                <p>Срок действия</p>
+                <input type="text">
+            </li>
+            <li>
+                <p>Код безопасности (CVV2/CVC2)</p>
+                <input type="text">
+            </li>
+        </ul>
+    </div>
+    <form method="post">
+        {% csrf_token %}
+        <div class="taking">
+            <p>СПОСОБ ПОЛУЧЕНИЯ</p>
+            <select id="oplataDropdown" name="dostavka">
+                <option value="home">Доставка на дом</option>
+                <option value="mail">Доставка на почту</option>
+            </select>
+        </div>
+        <div class="taking-adress">
+            <ul>
+                <li>
+                    <p>Место получения</p>
+                    <input type="text" name="adress">
+                </li>
+                <li>
+                    <p>Удобное время</p>
+                    <select class="taking-time" name="time">
+                        <option value="1">8:00-11:00</option>
+                        <option value="2">11:00-14:00</option>
+                        <option value="3">14:00-17:00</option>
+                        <option value="4">17:00-20:00</option>
+                        <option value="5">20:00-23:00</option>
+                    </select>
+                </li>
+            </ul>
+        </div>
+        <div class="cart-buttons">
+            <button name="back">Вернуться</button>
+            <button name="confirm">Продолжить</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

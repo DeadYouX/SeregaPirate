@@ -1,0 +1,17 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block h %}
+<h1>ФОТО</h1>
+{% endblock %}
+{% block main %}
+<div>
+    <ul class="photos">
+        {% for photo in photos %}
+        <li class="photo">
+            <img src="{% static photo %}" alt="">
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}

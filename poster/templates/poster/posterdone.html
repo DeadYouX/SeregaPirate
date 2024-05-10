@@ -1,0 +1,31 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block main %}
+<h4>СПАСИБО ЗА ПОКУПКУ!</h4>
+<ul class="">
+    {% for id, c, address, date in poster %}
+        <li class="poster_byid" data-year="{{ c }}">
+            <div>
+                <img src="{% static 'poster/calendar.svg' %}" alt="calendar">
+                <p id="date">{{ date }}</p>
+            </div>
+            <div>
+                <img src="{% static 'poster/location.svg' %}" alt="location">
+                <p id="city">г. {{ c }} - {{ address }}</p>
+            </div>
+        </li>
+    {% endfor %}
+</ul>
+
+<div class="thanks">
+    <div>
+        <p>Заказ оплачен.</p>
+        <p>Вам придёт сообщение с билетом на концерт.</p>    
+        <p>Если этого не произошло, звоните по номеру:</p>    
+        <p>+7(999)-999-99-99</p>    
+    </div>
+</div>
+<div class="button_next">
+    <button><a href="/poster/">Продолжить</a></button>
+</div>
+{% endblock %}

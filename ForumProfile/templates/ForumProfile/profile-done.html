@@ -1,0 +1,38 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block h %}
+<h1>ПРОФИЛЬ</h1>
+{% endblock %}
+{% block main %}
+
+<div class="profile">
+    <div class="photo-pass">
+        <div class="profile-ava">
+            <p>{{ user.username }}</p>
+            <img src="{% static user_profile.avatar %}" alt="">
+        </div>
+        <div class="change-password p-info">
+            <p>Информация профиля:</p>
+            <ul>
+                <li><p>email: {{ user_profile.email }}</p></li>
+                <li><p>Покупки: {{ user_profile.purchase_count }}</p></li>
+                <li><p>Сообщения: {{ user_profile.message_count }}</p></li>
+                <li><p>Дата регистрации: {{ user_profile.registration_date }}</p></li>
+            </ul>
+        </div>
+        <div class="profile-settings">
+            <a href="{% url 'password_change' %}"><img src="{% static 'ForumProfile/settings.svg' %}" alt="settings"></a>
+        </div>
+    </div>
+    <div>
+        <ul class="profile-info profile-logout">
+            <li><p>{{ success }}</p></li>
+            <form method="post" action="{% url 'logout' %}?next=/profile/">
+                {% csrf_token %}
+                <button >Выйти</button>
+            </form>
+        </ul>
+    </div>
+</div>
+
+{% endblock %}

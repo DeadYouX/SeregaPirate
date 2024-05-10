@@ -1,0 +1,28 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block h %}
+<h1>ФОРУМ</h1>
+{% endblock %}
+{% block main %}
+<div class="forum">
+    <div class="forum-points">
+        {% for chat in chats %}
+        <a href="/forum/{{ chat.id }}">{{ chat.name }}</a>
+        {% endfor %}
+    </div>
+    <div class="forum-chats">
+        <div class="tags">
+            <p>Тема</p>
+            <p>Сообщения</p>
+        </div>
+        <hr>
+        {% for chat in chats %}
+        <div class="tags">
+            <a href="{{ chat.id }}">{{ chat.name }}</a>
+            <p>{{ chat.message_count }} </p>
+        </div>
+        <hr>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

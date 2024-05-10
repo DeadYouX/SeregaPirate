@@ -1,0 +1,18 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block main %}
+<h1>Альбомы</h1>
+<div class="albums_by_id">
+    {% for id, title, photo, date, link in albums %}
+        <div class="album_by_id" data-year="{{ date }}">
+            <a href=""><img src="{% static photo %}" alt="{{ title }}"></a>
+            <a href=""><p>{{ title }}<br>{{ date }}</p></a>
+
+        </div>
+        <iframe class="frame" frameborder="0" src="https://music.yandex.ru/iframe/track/{{link}}"></iframe>
+    {% endfor %}
+</div>
+<div class="button_next">
+    <button><a href="http://127.0.0.1:8000/albums/">НАЗАД</a></button>
+</div>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block h %}
+<h1>ПРОФИЛЬ</h1>
+{% endblock %}
+{% block main %}
+<div class="registration">
+    <h5>ВОССТАНОВЛЕНИЕ</h5>
+    <ul class="reg-input">
+        <li>
+            <p>Логин</p>
+            <input type="text">
+        </li>
+        <li>
+            <p>Пароль</p>
+            <input type="password">
+        </li>
+        <li>
+            <p>Повтор пароля</p>
+            <input type="password">
+        </li>
+    </ul>
+    <ul class="auth-buttons">
+        <div class="auth-button">
+            <button><a href="{% url 'profile' %}">Назад</a></button>
+            <button><a href="#">Продолжить</a></button>
+        </div> 
+    </ul>
+</div>
+{% endblock %}

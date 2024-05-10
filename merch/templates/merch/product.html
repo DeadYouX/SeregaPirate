@@ -1,0 +1,60 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block h %}
+{% endblock %}
+{% block main %}
+<div class="merch-settings">
+    <form method="post">
+        {% csrf_token %}
+        {% for id, name, color, photo, price in products %}
+        <div class="product-settings">
+            <img src="{% static photo %}" alt="">
+            <div class="merch-settings-text">
+                <p>{{ name }}</p>
+                <p>Цвет:  {{ color }}</p>
+                <div class="container">
+                    <p>Размер:</p>
+                    {% for size in sizes %}
+                    <div class="size-button">
+                        <input type="text" name="size{{size}}" value="0">
+                        <button><p>{{size}}</p></button>
+                    </div>
+                    {% endfor %}
+                </div>
+                <p>Цена: {{ price }}₽</p>
+                <div class="buttons-cart-prod">
+                    <div class="cart-product-buttons">
+                        <button name="goto_prod" value="1"><a href="/merch/products/"><img src="{% static 'merch/product.svg' %}" alt=""></a></button>
+                        <button name="goto_cart" value="1"><a href="/merch/cart/"><img src="{% static 'merch/cart.svg' %}" alt=""></a></button>
+                    </div>
+                    <button name="add_cart" value="1"><p>Добавить в корзину</p></button>
+                </div>
+                <p class="cart-message">{{ message }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </form>
+</div>
+<script>
+    document.querySelectorAll('.size-button button').forEach(function(button) {
+        button.addEventListener('click', function(event) {
+            event.preventDefault(); // Предотвращаем переход по ссылке
+
+            // Получаем input, связанный с этой кнопкой
+            var input = button.parentNode.querySelector('input[type="text"]');
+            
+            // Устанавливаем значение 1 для выбранной кнопки и 0 для остальных
+            document.querySelectorAll('.size-button input').forEach(function(input) {
+                input.value = '0';
+            });
+            input.value = '1';
+
+            // Добавляем класс size-selected к выбранной кнопке и удаляем его у остальных кнопок
+            document.querySelectorAll('.size-button button').forEach(function(button) {
+                button.parentNode.classList.remove('size-selected');
+            });
+            button.parentNode.classList.add('size-selected');
+        });
+    });
+</script>
+{% endblock %}

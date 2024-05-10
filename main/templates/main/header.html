@@ -1,0 +1,85 @@
+<ul class="header_items">
+    {% if now == 'poster' %}
+        <li class="header_item header_item_now">
+            <a href="{% url 'poster' %}"><p>АФИША</p></a>
+        </li>
+    {% else %}
+        <li class="header_item">
+            <a href="{% url 'poster' %}"><p>АФИША</p></a>
+        </li>
+    {% endif %}
+
+    {% if now == 'news' %}
+        <li class="header_item header_item_now">
+            <a href="{% url 'news' %}"><p>НОВОСТИ</p></a>
+        </li>
+    {% else %}
+        <li class="header_item">
+            <a href="{% url 'news' %}"><p>НОВОСТИ</p></a>
+        </li>
+    {% endif %}
+
+    {% if now == 'merch' %}
+        <li class="header_item header_item_now">
+            <a href="{% url 'merch' %}"><p>МЕРЧ</p></a>
+        </li>
+    {% else %}
+        <li class="header_item">
+            <a href="{% url 'merch' %}"><p>МЕРЧ</p></a>
+        </li>
+    {% endif %}
+
+    {% if now == 'albums' %}
+        <li class="header_item header_item_now">
+            <a href="{% url 'albums' %}"><p>АЛЬБОМЫ</p></a>
+        </li>
+    {% else %}
+        <li class="header_item">
+            <a href="{% url 'albums' %}"><p>АЛЬБОМЫ</p></a>
+        </li>
+    {% endif %}
+
+    <li class="pirat">
+        <a href="{% url 'home' %}"><p>СЕРЁГА\nПИРАТ</p></a>
+    </li>
+
+    {% if now == 'photos' %}
+        <li class="header_item header_item_now">
+            <a href="{% url 'photos' %}"><p>ФОТО</p></a>
+        </li>
+    {% else %}
+        <li class="header_item">
+            <a href="{% url 'photos' %}"><p>ФОТО</p></a>
+        </li>
+    {% endif %}
+
+    {% if now == 'bio' %}
+        <li class="header_item header_item_now">
+            <a href="{% url 'bio' %}"><p>БИОГРАФИЯ</p></a>
+        </li>
+    {% else %}
+        <li class="header_item">
+            <a href="{% url 'bio' %}"><p>БИОГРАФИЯ</p></a>
+        </li>
+    {% endif %}
+
+    {% if now == 'forum' %}
+        <li class="header_item header_item_now">
+            <a href="{% url 'forum' %}"><p>ФОРУМ</p></a>
+        </li>
+    {% else %}
+        <li class="header_item">
+            <a href="{% url 'forum' %}"><p>ФОРУМ</p></a>
+        </li>
+    {% endif %}
+
+    {% if now == 'contacts' %}
+        <li class="header_item header_item_now">
+            <a href="{% url 'contacts' %}"><p>КОНТАКТЫ</p></a>
+        </li>
+    {% else %}
+        <li class="header_item">
+            <a href="{% url 'contacts' %}"><p>КОНТАКТЫ</p></a>
+        </li>
+    {% endif %}
+</ul>

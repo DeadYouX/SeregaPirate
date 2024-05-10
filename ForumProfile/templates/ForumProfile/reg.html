@@ -1,0 +1,62 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block h %}
+<h1>ПРОФИЛЬ</h1>
+{% endblock %}
+{% block main %}
+<form method="post">
+    {% csrf_token %}
+    <div class="registration">
+        <h5>РЕГИСТРАЦИЯ</h5>
+        <ul class="reg-input">
+            <li>
+                {% if errors.email %}
+                <span class="help mini-help">!</span>
+                <span class="help-text mini">
+                    {{errors.email}}
+                </span>
+                {% endif %}
+                <p>email</p>
+                <input type="text" name="email">
+            </li>
+            <li>
+                {% if errors.username %}
+                <span class="help mini-help">!</span>
+                <span class="help-text mini">
+                    {{errors.username}}
+                </span>
+                {% endif %}
+                <p>Логин</p>
+                <input type="text" name="username">
+            </li>
+            <li>
+                {% if errors.password1 %}
+                <span class="help mini-help">!</span>
+                <span class="help-text mini">
+                    {{errors.password1}}
+                </span>
+                {% endif %}
+                <p>Пароль</p>
+                <input type="password" name="password1">
+            </li>
+            <li>
+                {% if errors.password2 %}
+                <span class="help mini-help">!</span>
+                <span class="help-text mini">
+                    {{errors.password2}}
+                </span>
+                {% endif %}
+                <p>Повтор пароля</p>
+                <input type="password" name="password2">
+            </li>
+        </ul>
+        <ul class="auth-buttons">
+            <div class="auth-button">
+                <button><a href="{% url 'profile' %}">Есть аккаунт?</a></button>
+                <button value="SIGNUP">Продолжить</button>
+            </div> 
+        </ul>
+    </div>
+    
+</form>
+{% endblock %}
