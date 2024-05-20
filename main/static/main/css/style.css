@@ -76,7 +76,7 @@ body{
         line-height: 39.01px;
         text-wrap: wrap;
     }
-    
+
 }
 
 .pirat_img{
@@ -185,7 +185,7 @@ main{
 
 .footer_politic:hover{
     color: #FFF;
-    text-decoration: underline; 
+    text-decoration: underline;
 }
 
 .footer_music{
@@ -351,7 +351,7 @@ header{
 .photo{
     margin-top: 5dvh;
     padding-left: 4dvw;
-    
+
     width: 19dvw;
     height: 35dvh;
     p{
@@ -367,7 +367,7 @@ header{
         width: 15dvw;
         height: 35dvh;
         object-fit: cover;
-        
+
     }
     img:active{
         position: fixed;
@@ -404,7 +404,7 @@ header{
     text-align: center;
     color: #FFFFFF;
     text-decoration: none;
-    
+
 }
 .bio_point:hover{
     text-shadow: 13px 16px 35px rgba(0, 0, 0, 0.28), 4px 4px 8px rgba(0, 0, 0, 0.2);
@@ -423,13 +423,14 @@ header{
     flex-direction: column;
     padding-left: 30dvw;
     width: 90dvw;
-    height: 100dvh;
+    height: max-content;
     font-size: 24px;
     font-weight: 600;
     line-height: 29px;
     letter-spacing: 0em;
     text-align: left;
     color: #9966FF;
+    padding-bottom: 15dvh;
     a{
         margin-bottom: 2dvh;
     }
@@ -448,7 +449,7 @@ header{
     margin-bottom: 10dvh;
     padding-left: 4dvw;
     padding-top: 1dvh;
-    
+
     width: 18dvw;
     height: 38dvh;
     a{
@@ -469,7 +470,7 @@ header{
         width: 15dvw;
         height: 35dvh;
         object-fit: cover;
-        
+
     }
     img:hover{
         filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
@@ -643,7 +644,7 @@ header{
 .album_by_id{
     padding-left: 1dvw;
     padding-top: 1dvh;
-    
+
     width: 18dvw;
     height: 35dvh;
     a{
@@ -852,7 +853,7 @@ header{
     input:hover{
         filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
     }
-    
+
 }
 
 #oplataDropdown{
@@ -916,7 +917,7 @@ header{
         height: 8dvh;
         width: 12dvw;
         background-color: #FFE3FF;
-        
+
         font-size: 24px;
         font-weight: 700;
         line-height: 29px;
@@ -968,7 +969,7 @@ header{
         border: 1px solid #9999FF;
         background-color: #CC99FF;
         width: 60dvw;
-        height: 30dvh;
+        height: max-content;
         margin-top: 2dvh;
         p{
             margin-top: 2dvh;
@@ -1039,7 +1040,7 @@ h5{
             background: #fff;
             border-radius: 20px;
             border: #000 solid 1px;
-    
+
             padding-left: 2dvw;
             font-size: 24px;
             font-weight: 600;
@@ -1054,10 +1055,10 @@ h5{
             line-height: 29.26px;
             text-align: center;
             color: #9966FF;
-            
+
         }
     }
-    
+
 }
 
 .auth-buttons{
@@ -1119,7 +1120,7 @@ h5{
             background: #fff;
             border-radius: 20px;
             border: #000 solid 1px;
-    
+
             padding-left: 2dvw;
             font-size: 24px;
             font-weight: 600;
@@ -1137,7 +1138,7 @@ h5{
             padding-left: 1dvw;
         }
     }
-    
+
 }
 
 .errors{
@@ -1245,7 +1246,7 @@ h5{
         height: 10dvh;
         color: #fff;
         font-size: 50px;
-        
+
         position: relative;
 
         top: 28dvh;
@@ -1300,7 +1301,7 @@ h5{
             background: #FFF;
             border-radius: 20px;
             border: #000 solid 1px;
-    
+
             padding-left: 2dvw;
             font-size: 24px;
             font-weight: 600;
@@ -1415,7 +1416,7 @@ h5{
     margin-left: 2dvw;
     padding-top: 2dvh;
     border-radius: 10px;
-    
+
     a{
         margin-bottom: 0.5dvh;
         font-size: 24px;
@@ -1563,6 +1564,15 @@ h5{
         padding: 1dvh 0 1dvh 0;
         color: #FFF;
     }
+    a{
+        display: flex;
+        font-size: 0.67em;
+        font-weight: bold;
+        text-decoration: underline;
+        justify-content: start;
+        color: #000;
+        font-size: 14px;
+    }
 }
 
 .not-auth{
@@ -1596,14 +1606,6 @@ h5{
     height: max-content;
 }
 
-h6{
-    display: flex;
-    font-size: 0.67em;
-    font-weight: bold;
-    text-decoration: underline;
-    justify-content: start;
-}
-
 h7{
     display: flex;
     font-size: 0.67em;
@@ -1623,7 +1625,7 @@ h8{
     width: 1.5dvw;
     height: 3dvh;
     border-radius: 50%;
-    position: relative; 
+    position: relative;
     right: -56dvw;
     background-color: #ff0000;
     display: flex;
@@ -1768,7 +1770,7 @@ h8{
             text-decoration: none;
             width: 100%;
             height: 100%;
-        }  
+        }
     }
     button:hover{
         filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
@@ -1813,9 +1815,9 @@ h8{
         display: flex;
         flex-direction: column;
         justify-content: center;
-        padding-top: 15dvh;        
+        padding-top: 15dvh;
         .but{
-            margin-top: 5dvh; 
+            margin-top: 5dvh;
             display: flex;
             justify-content: center;
             button{
@@ -1873,7 +1875,7 @@ h8{
             text-align: center;
             color: #000;
             text-decoration: none;
-        }  
+        }
     }
     button:hover{
         filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
@@ -1912,7 +1914,7 @@ h8{
             text-align: center;
             color: #fff;
             text-decoration: none;
-        }  
+        }
     }
     button:hover{
         filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
@@ -1940,7 +1942,7 @@ h8{
     }
     .merch-settings-text{
         display: flex;
-        flex-direction: column;  
+        flex-direction: column;
     }
     p{
         padding-top: 4dvh;
@@ -1968,7 +1970,7 @@ h8{
             text-align: center;
             color: #000;
             text-decoration: none;
-        }  
+        }
     }
     button:hover{
         filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
@@ -2001,7 +2003,7 @@ h8{
             text-align: center;
             color: #fff;
             text-decoration: none;
-        } 
+        }
     }
 }
 
@@ -2028,12 +2030,12 @@ h8{
                 width: 3dvw;
                 height: 6dvh;
             }
-        }  
+        }
     }
     button:hover{
         filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
     }
-    
+
 }
 
 .size-button{
@@ -2056,7 +2058,7 @@ h8{
             text-align: center;
             text-decoration: none;
             color: #FFF;
-        } 
+        }
     }
 }
 
@@ -2064,7 +2066,7 @@ h8{
     button{
         background-color: #ff00ff;
     }
-    
+
 }
 
 

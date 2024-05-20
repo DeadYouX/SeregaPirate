@@ -11,7 +11,7 @@ def merch(request):
 def products(request):
     products = Product.objects.all()
     cart, created = Cart.objects.get_or_create(user=Profile.objects.get(user=request.user), now=True)
-    if created: 
+    if created:
         cart.save()
     data = {
         "title": 'Товары',
@@ -27,7 +27,7 @@ def products(request):
 def cart(request):
     products = Product.objects.all()
     cart, created = Cart.objects.get_or_create(user=Profile.objects.get(user=request.user), now=True)
-    if created: 
+    if created:
         cart.save()
     if request.method == 'POST':
             try:
@@ -54,7 +54,7 @@ def cart(request):
                         return redirect('cart_payment')
             except:
                 pass
-    
+
     data = {
         "title": 'Товары',
         'showprofile': True,
@@ -122,8 +122,8 @@ def cart_payment(request):
                     s += 'Доставка на дом\n'
                 elif request.POST['dostavka'] == 'mail':
                     s += 'Доставка на почту\n'
-                s += f'По адресу: {request.POST['adress']}\n'
-                s += f'Удобное время получения: С {5+3*int(request.POST['time'])}:00 до {5+3*int(request.POST['time']) + 3}:00\n'
+                s += f'По адресу: {request.POST["adress"]}\n'
+                s += f"Удобное время получения: С {5+3*int(request.POST['time'])}:00 до {5+3*int(request.POST['time']) + 3}:00\n"
                 cart_last, created = Cart.objects.get_or_create(user=Profile.objects.get(user=request.user), last=True)
                 cart_last.last = False
                 cart_last.save()
@@ -136,7 +136,7 @@ def cart_payment(request):
                 profile.save()
                 return redirect('cart_confirm')
 
-    
+
     data = {
         "title": 'Товары',
         'showprofile': True,

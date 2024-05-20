@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 
 def auth(request):
@@ -10,6 +9,8 @@ def auth(request):
     }
     return render(request, 'ForumProfile/auth.html', data)
 
+from django.contrib.auth import authenticate
+from django.contrib.auth import login as loged
 def reg(request):
     all_errors = {}
     if request.method == 'POST':
@@ -20,9 +21,10 @@ def reg(request):
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password1')
             # выполняем аутентификацию
-            user = authenticate(username=username, password=password)
-            login(request, user)
-            return redirect('/profile/')
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                loged(request, user)
+            return redirect('profile')
         else:
             for field, errors in form.errors.items():
                 err = ''
@@ -79,7 +81,7 @@ def profile(request):
             'finded': True,
             'user_profile': {
                 'username': user.user.username,
-                'avatar': f'{str(user.avatar).replace('ForumProfile/static/', '')}',
+                'avatar': f"{str(user.avatar).replace('SeregaPirate/static/', '')}",
                 'email': request.user.email,
                 'purchase_count': user.purchase_count,
                 'message_count': user.message_count,
@@ -87,9 +89,11 @@ def profile(request):
             },
         }
         return render(request, 'ForumProfile/profile.html', data)
-    
+
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
+
+from django.core.files.storage import FileSystemStorage
 
 @login_required
 def settings(request):
@@ -113,20 +117,21 @@ def settings(request):
                 if save_option == 'avatar':
                     if request.FILES:
                         user = Profile.objects.get(user=request.user)
-                        user.avatar = request.FILES['file_upload']
+                        uploaded_photo = request.FILES['file_upload']
+                        user.avatar = uploaded_photo
                         user.save()
                         update_session_auth_hash(request, user)
                         return redirect('avatar_done')
                     else:
                         return redirect('password_change')
-        
+
         user = Profile.objects.get_or_create(user=request.user)[0]
         data = {
             "title": 'Профиль',
             'showprofile': False,
             'errors': all_errors,
             'user_profile': {
-                'avatar': f'{str(user.avatar).replace('ForumProfile/static/', '')}',
+                'avatar': f"{str(user.avatar).replace('SeregaPirate/static/', '')}",
                 'email': request.user.email,
                 'purchase_count': user.purchase_count,
                 'message_count': user.message_count,
@@ -137,7 +142,7 @@ def settings(request):
 
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login as auth_login
-from django.shortcuts import render, redirect
+
 def login(request):
     all_errors = {}
     if request.method == 'POST':
@@ -163,13 +168,12 @@ def login(request):
         }
     return render(request, 'registration/login.html', data)
 
-from django.shortcuts import redirect
 @login_required
 def password_change_done(request):
     if request.user.is_authenticated:
         return redirect('password-done')
 
-@login_required 
+@login_required
 def password_done(request):
     if request.user.is_authenticated:
         user = Profile.objects.get_or_create(user=request.user)[0]
@@ -178,7 +182,7 @@ def password_done(request):
             'showprofile': False,
             'success': "Ваш пароль был успешно изменён.",
             'user_profile': {
-                'avatar': f'{str(user.avatar).replace('ForumProfile/static/', '')}',
+                'avatar': f"{str(user.avatar).replace('SeregaPirate/static/', '')}",
                 'email': request.user.email,
                 'purchase_count': user.purchase_count,
                 'message_count': user.message_count,
@@ -187,7 +191,7 @@ def password_done(request):
         }
         return render(request, 'ForumProfile/profile-done.html', data)
 
-@login_required   
+@login_required
 def avatar_done(request):
     if request.user.is_authenticated:
         user = Profile.objects.get_or_create(user=request.user)[0]
@@ -196,7 +200,7 @@ def avatar_done(request):
             'showprofile': False,
             'success': "Ваше фото был успешно изменено.",
             'user_profile': {
-                'avatar': f'{str(user.avatar).replace('ForumProfile/static/', '')}',
+                'avatar': f"{str(user.avatar).replace('SeregaPirate/static/', '')}",
                 'email': request.user.email,
                 'purchase_count': user.purchase_count,
                 'message_count': user.message_count,
@@ -204,7 +208,7 @@ def avatar_done(request):
             },
         }
         return render(request, 'ForumProfile/profile-done.html', data)
-    
+
 
 def profile_by_nick(request, nickname):
     try:
@@ -216,7 +220,7 @@ def profile_by_nick(request, nickname):
             'finded': True,
             'user_profile': {
                 'username': user.user.username,
-                'avatar': f'{str(user.avatar).replace('ForumProfile/static/', '')}',
+                'avatar': f"{str(user.avatar).replace('SeregaPirate/static/', '')}",
                 'email': user.user.email,
                 'purchase_count': user.purchase_count,
                 'message_count': user.message_count,
@@ -232,4 +236,3 @@ def profile_by_nick(request, nickname):
             'finded': False,
         }
         return render(request, 'ForumProfile/profile.html', data)
-    

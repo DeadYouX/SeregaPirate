@@ -12,10 +12,12 @@ class SignUpForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ('username', 'avatar', 'purchase_count', 'message_count', 'email', 'password1', 'password2', 'registration_date')
+        fields = ['username', 'avatar', 'purchase_count', 'message_count', 'email', 'password1', 'password2', 'registration_date']
 
 
-from django import forms
+from .models import Profile
 
-class FileUploadForm(forms.Form):
-    file_upload = forms.ImageField()
+class PhotoForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['photo']

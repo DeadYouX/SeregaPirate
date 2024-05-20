@@ -52,7 +52,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'SeregaPirat.wsgi.application'
+WSGI_APPLICATION = 'SeregaPirate.SeregaPirat.wsgi.application'
 
 
 # Database

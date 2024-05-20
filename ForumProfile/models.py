@@ -4,7 +4,7 @@ from django.utils import timezone
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    avatar = models.ImageField(upload_to='ForumProfile/static/ForumProfile/', default='ForumProfile/static/ForumProfile/avatar.jpg', blank=True, null=True)
+    avatar = models.ImageField(upload_to='SeregaPirate/static/ForumProfile/', default='SeregaPirate/static/ForumProfile/avatar.jpg', blank=True, null=True)
     purchase_count = models.IntegerField(default=0)
     message_count = models.IntegerField(default=0)
     registration_date = models.DateTimeField(default=timezone.now)
